@@ -18,7 +18,7 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
-class HelperLib {
+class Helper {
     public static final Unsafe UNSAFE;
     private static final MethodHandles.Lookup lookup;
     private static final Object internalUNSAFE;
@@ -139,21 +139,21 @@ class HelperLib {
 
     @SuppressWarnings({"ConstantConditions", "unchecked", "rawtypes"})
     public static void coexistenceCoreAndMod() {
-        List<NamedPath> found = HelperLib.getFieldValue(ModDirTransformerDiscoverer.class, "found", List.class);
-        found.removeIf(namedPath -> HelperLib.getJarPath(HelperLib.class).equals(namedPath.paths()[0].toString()));
+        List<NamedPath> found = Helper.getFieldValue(ModDirTransformerDiscoverer.class, "found", List.class);
+        found.removeIf(namedPath -> Helper.getJarPath(Helper.class).equals(namedPath.paths()[0].toString()));
 
-        HelperLib.getFieldValue(HelperLib.getFieldValue(Launcher.INSTANCE, "moduleLayerHandler", ModuleLayerHandler.class), "completedLayers", EnumMap.class).values().forEach(layerInfo -> {
-            ModuleLayer layer = HelperLib.getFieldValue(layerInfo, "layer", ModuleLayer.class);
+        Helper.getFieldValue(Helper.getFieldValue(Launcher.INSTANCE, "moduleLayerHandler", ModuleLayerHandler.class), "completedLayers", EnumMap.class).values().forEach(layerInfo -> {
+            ModuleLayer layer = Helper.getFieldValue(layerInfo, "layer", ModuleLayer.class);
 
             layer.modules().forEach(module -> {
-                if (module.getName().equals(HelperLib.class.getModule().getName())) {
-                    Set<ResolvedModule> modules = new HashSet<>(HelperLib.getFieldValue(layer.configuration(), "modules", Set.class));
-                    Map<String, ResolvedModule> nameToModule = new HashMap(HelperLib.getFieldValue(layer.configuration(), "nameToModule", Map.class));
+                if (module.getName().equals(Helper.class.getModule().getName())) {
+                    Set<ResolvedModule> modules = new HashSet<>(Helper.getFieldValue(layer.configuration(), "modules", Set.class));
+                    Map<String, ResolvedModule> nameToModule = new HashMap(Helper.getFieldValue(layer.configuration(), "nameToModule", Map.class));
 
-                    modules.remove(nameToModule.remove(HelperLib.class.getModule().getName()));
+                    modules.remove(nameToModule.remove(Helper.class.getModule().getName()));
 
-                    HelperLib.setFieldValue(layer.configuration(), "modules", modules);
-                    HelperLib.setFieldValue(layer.configuration(), "nameToModule", nameToModule);
+                    Helper.setFieldValue(layer.configuration(), "modules", modules);
+                    Helper.setFieldValue(layer.configuration(), "nameToModule", nameToModule);
                 }
             });
         });

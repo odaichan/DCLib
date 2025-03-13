@@ -1,4 +1,4 @@
-C:\Users\diyou\.gradle\caches\forge_gradle\minecraft_user_repo\net\minecraftforge\forge\1.20.1-47.3.5_mapped_official_1.20.1\forge-1.20.1-47.3.5_mapped_official_1.20.1.jar
+D:\JavaWorkspace\DCLib\build\fg_cache\net\minecraftforge\forge\1.20.1-47.3.5_mapped_official_1.20.1\forge-1.20.1-47.3.5_mapped_official_1.20.1.jar
 C:\Users\diyou\.gradle\caches\forge_gradle\minecraft_repo\versions\1.20.1\client-extra.jar
 C:\Users\diyou\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlearlydisplay\1.20.1-47.3.5\26dd5e9a33fb4938a189b2766b8d5f1daec1ab48\fmlearlydisplay-1.20.1-47.3.5.jar
 C:\Users\diyou\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.20.1-47.3.5\4c589c051ef533f8898fb5d83514d4186faa0eeb\javafmllanguage-1.20.1-47.3.5.jar

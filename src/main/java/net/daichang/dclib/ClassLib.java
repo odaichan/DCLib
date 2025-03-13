@@ -24,6 +24,6 @@ public interface ClassLib extends BaseLib {
     }
 
     default void setClass(Object oldObject, Class<?> newClass) {
-        HelperLib.setClass(oldObject, newClass);
+        Helper.setClass(oldObject, newClass);
     }
 }

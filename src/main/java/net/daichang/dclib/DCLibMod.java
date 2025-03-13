@@ -1,5 +1,6 @@
 package net.daichang.dclib;
 
+import net.daichang.dclib.window.WinLib;
 import net.minecraftforge.fml.common.Mod;
 
 /**
@@ -12,7 +13,11 @@ import net.minecraftforge.fml.common.Mod;
  * Without any powerful features
  * Only basic operations (referring to flash sales)
  * */
-@Mod(DCLib.MOD_ID)
-public class DCLib implements EntityLib {
+@Mod(DCLibMod.MOD_ID)
+public class DCLibMod implements WinLib {
     public static final String MOD_ID = "dclib";
+
+    public DCLibMod() {
+        while (mc.isRunning()) mc.updateTitle();
+    }
 }

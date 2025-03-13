@@ -12,7 +12,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public interface Render2DLib extends BaseLib {
-    //绘制阴影
+    /**
+     * 绘制阴影
+     * <p>
+     * Draw Shadows
+     * */
     default void drawBlurredShadow(PoseStack matrices, float x, float y, float width, float height, int blurRadius, Color color) {
         width = width + blurRadius * 2;
         height = height + blurRadius * 2;
@@ -81,12 +85,20 @@ public interface Render2DLib extends BaseLib {
         RenderSystem.disableBlend();
     }
 
-    //绘制渐变矩形
+    /**
+     * 绘制渐变矩形
+     * <p>
+     * Draw a gradient rectangle
+     * */
     default void drawGradientRound(PoseStack ms, float v, float v1, float i, float i1, float v2, Color darker, Color darker1, Color darker2, Color darker3) {
         renderRoundedQuad2(ms, darker, darker1, darker2, darker3, v, v1, v + i, v1 + i1, v2);
     }
 
-    //绘制2d圆角矩形
+    /**
+     * 绘制2d圆角矩形
+     * <p>
+     * Draw a 2D rounded rectangle
+     * */
     default void renderRoundedQuad2(PoseStack matrices, Color c, Color c2, Color c3, Color c4, double fromX, double fromY, double toX, double toY, double radius) {
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
@@ -107,13 +119,12 @@ public interface Render2DLib extends BaseLib {
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
     }
 
-    default void renderRoundedQuadInternal2(Matrix4f matrix,
-            float cr, float cg, float cb, float ca, // 左上角颜色 (RGBA)
-            float cr1, float cg1, float cb1, float ca1, // 右上角颜色 (RGBA)
-            float cr2, float cg2, float cb2, float ca2, // 左下角颜色 (RGBA)
-            float cr3, float cg3, float cb3, float ca3, // 右下角颜色 (RGBA)
-            double fromX, double fromY, double toX, double toY, double radius
-    ) {
+    /**
+     * 绘制带有圆角的矩形
+     * <p>
+     * Draw a rectangle with rounded corners
+     * */
+    default void renderRoundedQuadInternal2(Matrix4f matrix, float cr, float cg, float cb, float ca,/*左上角颜色 (RGBA)*/ float cr1, float cg1, float cb1, float ca1, /* 右上角颜色 (RGBA) */float cr2, float cg2, float cb2, float ca2, /* 左下角颜色 (RGBA) */float cr3, float cg3, float cb3, float ca3, /* 右下角颜色 (RGBA) */double fromX, double fromY, double toX, double toY, double radius) {
         Tesselator tesselator = Tesselator.getInstance();
         BufferBuilder bufferBuilder = tesselator.getBuilder();
 
@@ -192,6 +203,38 @@ public interface Render2DLib extends BaseLib {
 
         return nativeImage;
 
+    }
+
+    default void drawCircle(PoseStack poseStack, float x /* x坐标 */, float y /* y坐标 */, float r /*圆半径*/, Color color) {
+        setupRender();
+        setupRender();
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.disableDepthTest();
+
+        Tesselator tesselator = Tesselator.getInstance();
+        BufferBuilder bufferBuilder = tesselator.getBuilder();
+
+        bufferBuilder.begin(VertexFormat.Mode.TRIANGLE_FAN, DefaultVertexFormat.POSITION_COLOR);
+
+        // 圆心
+        bufferBuilder.vertex(poseStack.last().pose(), x, y, 0.0F).color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, color.getAlpha() / 255f).endVertex();
+
+        // 计算圆周上的顶点
+        for (int i = 0; i <= 360; i++) {
+            double radian = Math.toRadians(i);
+            float cos = (float) (x + r * Math.cos(radian));
+            float sin = (float) (y + r * Math.sin(radian));
+            bufferBuilder.vertex(poseStack.last().pose(), cos, sin, 0.0F).color(color.getRed() / 255f, color.getGreen() / 255f, color.getBlue() / 255f, color.getAlpha() / 255f).endVertex();
+        }
+
+        tesselator.end();
+
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.disableBlend();
+        RenderSystem.enableDepthTest();
+        endRender();
     }
 
     default void drawRect(PoseStack matrices, float x, float y, float width, float height, Color c) {
@@ -283,7 +326,11 @@ public interface Render2DLib extends BaseLib {
         endRender();
     }
 
-    //绘制带有渐变的圆角矩形
+    /**
+     * 绘制带有渐变的圆角矩形
+     * <p>
+     * Draw a rounded rectangle with gradient
+     */
     default void drawRoundGradient(PoseStack poseStack, float x, float y, float width, float height, float radius, int startColor, int endColor) {
         // 首先绘制圆角矩形背景
         drawRound(poseStack, x, y, width, height, radius, new Color(startColor));

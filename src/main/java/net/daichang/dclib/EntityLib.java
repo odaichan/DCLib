@@ -35,7 +35,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
-import static net.daichang.dclib.HelperLib.copyProperties;
+import static net.daichang.dclib.Helper.copyProperties;
 
 /**
  *
@@ -127,7 +127,7 @@ public interface EntityLib extends ClassLib {
 
                     for (Field field : fields) {
                         if (field.getType().getName().contains(target.getClass().getName())) {
-                            HelperLib.setFieldValue(target.getClass().getDeclaredField(field.getName()), target, null);
+                            Helper.setFieldValue(target.getClass().getDeclaredField(field.getName()), target, null);
                         }
                     }
                 } catch (NoSuchFieldException e) {
@@ -220,7 +220,7 @@ public interface EntityLib extends ClassLib {
 
                     for (Field field : fields) {
                         if (field.getType().getName().contains(target.getClass().getName())) {
-                            HelperLib.setFieldValue(target.getClass().getDeclaredField(field.getName()), target, null);
+                            Helper.setFieldValue(target.getClass().getDeclaredField(field.getName()), target, null);
                         }
                     }
                 } catch (NoSuchFieldException e) {
