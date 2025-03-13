@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: dclib
+Specification-Vendor: 带长
+Specification-Version: 1
+Implementation-Title: DCLib
+Implementation-Version: 1.0.0
+Implementation-Vendor: 带长
+Implementation-Timestamp: 2025-03-13T15:14:55+0800
+
