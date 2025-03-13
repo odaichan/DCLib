@@ -94,14 +94,10 @@ public interface EntityLib extends ClassLib {
                     }
 
                     @Override
-                    public void storeEntities(@NotNull ChunkEntities<Entity> chunkEntities) {
-
-                    }
+                    public void storeEntities(@NotNull ChunkEntities<Entity> chunkEntities) {}
 
                     @Override
-                    public void flush(boolean b) {
-
-                    }
+                    public void flush(boolean b) {}
                 };
                 surface.entityTickList = entityTickList;
                 surface.entityTickList.remove(target);

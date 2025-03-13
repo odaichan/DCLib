@@ -1,11 +1,14 @@
 package net.daichang.dclib;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.User;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LevelRenderer;
+
+import java.util.HashMap;
 
 /**
  *
@@ -44,4 +47,18 @@ public interface BaseLib {
     float infiniteFloat = Float.POSITIVE_INFINITY;
 
     double infiniteDouble = Double.POSITIVE_INFINITY;
+
+    default void setupRender() {
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+    }
+
+    default void endRender() {
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.disableBlend();
+        RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
+    }
+
+    HashMap<Integer, Integer> shadowCache = new HashMap<>();
 }
