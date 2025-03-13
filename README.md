@@ -2,5 +2,10 @@
 大部分的接口都是继承的BaseLib
 是以Mod的形式制作的，版本是Minecraft 1.20.1
 
+![给个星星吧](REMDME.gif)
 
-This library is specifically designed for flash sales. Although it only has the most basic operations, it is still worth learning from. Most of the interfaces are inherited from BaseLib, which is made in the form of mods and is version 1.20.1 of Minecraft
+This library is specifically designed for flash sales. Although it only has the most basic operations, 
+it is still worth learning from. Most of the interfaces are inherited from BaseLib, 
+which is made in the form of mods and is version 1.20.1 of Minecraft
+
+![Give Me Star!](IMG.png)
