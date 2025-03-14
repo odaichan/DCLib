@@ -9,7 +9,7 @@ import org.lwjgl.glfw.GLFW;
  * Based on GLFW
  * */
 public interface WinLib extends BaseLib {
-    long windows = window.getWindow();
+    long windows = getWindow.getWindow();
 
     /**
      * 设置窗口标题

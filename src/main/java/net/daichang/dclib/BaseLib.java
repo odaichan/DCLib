@@ -57,7 +57,14 @@ public interface BaseLib {
 
     Entity cameraEntity = mc.getCameraEntity();
 
-    Window window = mc.getWindow();
+    /**
+     * Minecraft的getWindow方法
+     * 它的返回值不是long
+     * <p>
+     * The getWindow method in Minecraft
+     * Its return value is not long
+     * */
+    Window getWindow = mc.getWindow();
 
     String gameDir = mc.gameDirectory.getPath();
 
